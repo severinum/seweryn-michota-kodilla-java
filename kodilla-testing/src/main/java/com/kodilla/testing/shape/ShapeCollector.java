@@ -3,13 +3,14 @@ package com.kodilla.testing.shape;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ShapeCollector {
 
-    private List<Shape> shapes = new ArrayList<>();
+    private List<Shape> shapes = new ArrayList<Shape>();
 
     public void addFigure(Shape shape){
         if(shape != null){
-            shapes.add(shape);
+           shapes.add(shape);
         }
     }
 
