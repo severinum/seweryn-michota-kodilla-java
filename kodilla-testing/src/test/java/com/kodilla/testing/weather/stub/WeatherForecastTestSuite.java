@@ -13,6 +13,6 @@ public class WeatherForecastTestSuite {
         // when
         int qtyOfSensors = weatherForecast.calculateForecast().size();
         // then
-        Assertions.assertEquals(5, qtyOfSensors);
+        Assertions.assertEquals(6, qtyOfSensors);
     }
 }
