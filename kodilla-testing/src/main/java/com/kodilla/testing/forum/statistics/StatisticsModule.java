@@ -17,9 +17,9 @@ public class StatisticsModule {
         this.postsCount = statistics.postsCount();
         this.commentsCount = statistics.commentsCount();
 
-        this.avgUserPosts = _calculateAvgUserPosts();
-        this.avgPostComments = _calculateAvgPostComments();
-        this.avgUserComments = _calculateAvgUserComments();
+        this.avgUserPosts = this.usersCount <= 0 ? 0 : (this.postsCount / (double) this.usersCount);
+        this.avgPostComments = this.postsCount <= 0 ? 0 : (this.commentsCount / (double) this.postsCount);
+        this.avgUserComments = this.usersCount <= 0 ? 0 : (this.commentsCount / (double) this.usersCount);
 
     }
 
@@ -45,20 +45,5 @@ public class StatisticsModule {
 
     public double getAvgPostComments() {
         return avgPostComments;
-    }
-
-    private double _calculateAvgUserComments() {
-        if(this.usersCount <= 0) return 0;
-        return (this.commentsCount / (double) this.usersCount);
-    }
-
-    private double _calculateAvgPostComments() {
-        if(this.postsCount <= 0) return 0;
-        return (this.commentsCount / (double) this.postsCount);
-    }
-
-    private double _calculateAvgUserPosts() {
-        if(this.usersCount <= 0) return 0;
-        return (this.postsCount / (double) this.usersCount);
     }
 }
