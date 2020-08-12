@@ -57,7 +57,7 @@ class WeatherForecastTestSuite {
         // when
         double avgTemperature = weatherForecast.calculateAverageTemperature();
         // then
-        Assertions.assertEquals(25.56, avgTemperature);
+        Assertions.assertEquals(25.56, avgTemperature, 0.01 );
     }
 
     @Test
