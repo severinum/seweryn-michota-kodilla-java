@@ -56,4 +56,8 @@ public final class Task {
                 ", deadline=" + deadline +
                 '}' + "\n";
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/macbook

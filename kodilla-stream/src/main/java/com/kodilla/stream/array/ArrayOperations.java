@@ -14,15 +14,12 @@ public interface ArrayOperations {
          IntStream.range(0, numbers.length)
                 .forEach( n -> System.out.println(numbers[n]));
 
-         OptionalDouble avg = IntStream.range(0, numbers.length)
+         Double avg = IntStream.range(0, numbers.length)
                 .map( n -> numbers[n])
-                .average();
+                .average()
+                 .orElse(0.0);
 
-         if (avg.isPresent()) {
-            DecimalFormat df = new DecimalFormat("0.00");
-            df.setRoundingMode(RoundingMode.DOWN);
-            return Double.parseDouble( df.format(avg.getAsDouble()) );
-         }
-         return 0;
+
+            return avg;
     }
 }
