@@ -3,6 +3,7 @@ package com.kodilla.stream.portfolio;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -105,4 +106,93 @@ class BoardTestSuite {
         assertEquals(user, tasks.get(0).getAssignedUser());
         assertEquals(user, tasks.get(1).getAssignedUser());
     }
+
+    @Test
+    void testAddTaskListFindOutdatedTasks(){
+        // given
+        Board project = prepareTestData();
+        // when
+        List<TaskList> undoneTasks = new ArrayList<>();
+        undoneTasks.add(new TaskList("To do"));
+        undoneTasks.add(new TaskList("In progress"));
+        List<Task> tasks = project.getTaskLists().stream()
+                .filter(undoneTasks::contains)
+                .flatMap( tl -> tl.getTasks().stream() )
+                .filter( t -> t.getDeadline().isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+        // then
+        assertEquals(1, tasks.size());
+        assertEquals("HQLs for analysis", tasks.get(0).getTitle());
+    }
+
+    @Test // zadania wykonywane od min 10 dni
+    void testAddTaskListFindLongTasks() {
+        //Given
+        Board project = prepareTestData();
+        // when
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        long longTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap( tl -> tl.getTasks().stream())
+                .map(Task::getCreated)
+                .filter( d -> d.compareTo(LocalDate.now().minusDays(1)) <= 0)
+                .count();
+
+        // then
+        assertEquals(2, longTasks);
+    }
+
+    @Test
+    void testAddTaskListAverageWorkingOnTask(){
+        //Given
+        Board project = prepareTestData();
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+
+        In Int = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap( tl -> tl.getTasks().stream())
+                .
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

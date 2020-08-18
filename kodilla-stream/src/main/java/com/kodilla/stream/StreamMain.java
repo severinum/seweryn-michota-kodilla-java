@@ -78,7 +78,7 @@ public class StreamMain {
 
          */
 
-        /* BOOK - streams */
+        /* BOOK - streams
         BookDirectory theBookDirectory = new BookDirectory();
         List<Book> theResultListOfBooks = theBookDirectory.getList().stream()
                 .filter(book -> book.getYearOfPublication() > 2005)
@@ -106,7 +106,7 @@ public class StreamMain {
         System.out.println(theResultString);
 
 
-        /* FORUM USER HOMEWORK */
+        /* FORUM USER HOMEWORK
         System.out.println("\nForum Users Filtering\n");
         Forum forum = new Forum();
         Map<Integer, ForumUser> filteredForumUsers = forum.getUserList().stream()
@@ -121,5 +121,10 @@ public class StreamMain {
         filteredForumUsers.entrySet().stream()
                 .map(entry -> entry.getKey() + " : " + entry.getValue())
                 .forEach(System.out::println);
+
+         */
+
+
+
     }
 }
