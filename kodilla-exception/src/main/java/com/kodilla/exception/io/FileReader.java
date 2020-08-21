@@ -9,19 +9,31 @@ import java.util.stream.Stream;
 
 public class FileReader {
 
-    public void readFile() throws IOException {
+    public void readFile() throws FileReaderException {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("names.txt").getFile());
-        //Path path = Paths.get(file.getPath()); // poprwna linia
-        Path path = Paths.get("file-not-exist.txt"); // spowoduje błąd
+        Path path = Paths.get(file.getPath()); // poprwna linia
+        ///Path path = Paths.get("file-not-exist.txt"); // spowoduje błąd
         try {
             Stream<String> fileLines = Files.lines(path);
             fileLines.forEach(System.out::println);
         } catch (IOException e) {
-            System.out.println("Błąd odczytu pliku : " + e);
+            throw new FileReaderException();
         } finally {
             System.out.println("I am gonna behere ... always!");
         }
         System.out.println(file.getPath());
+    }
+
+    public void readFile(final String fileName) throws FileReaderException {
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        try (Stream<String> fileLines = Files.lines(Path.of(classLoader.getResource(fileName).toURI()))) {
+            fileLines.forEach(System.out::println);
+        } catch (Exception e) {
+            throw new FileReaderException();
+        } finally {
+            System.out.println("I am gonna be here... always!");
+        }
     }
 }

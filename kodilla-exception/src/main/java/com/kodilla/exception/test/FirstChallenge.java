@@ -5,7 +5,6 @@ import java.nio.file.Path;
 public class FirstChallenge {
 
     public double divide(double a, double b) {
-        double result = 0;
         try {
             return a / b;
         } catch (Exception e) {
