@@ -1,16 +1,20 @@
 package com.kodilla.stream.portfolio;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTestSuite {
 
     @Test
+    @DisplayName("Add tasks lists to the project")
     void testAddTaskList() {
         //Given
         Board project = prepareTestData();
@@ -90,19 +94,63 @@ class BoardTestSuite {
     }
 
 
-    @Test
+    @Test // wyszukanie zadan uzytkownika
+    @DisplayName("Get users tasks")
     void testAddTaskListFindUsersTasks(){
         // given
-        Board project = prepareTestData();
+        Board project  = prepareTestData();
         // when
         User user = new User("developer1", "John Smith");
         List<Task> tasks = project.getTaskLists().stream()
-                .flatMap( l -> l.getTasks().stream())
-                .filter( t -> t.getAssignedUser().equals(user))
-                .collect(Collectors.toList());
+                .flatMap( list -> list.getTasks().stream())
+                .filter( task -> task.getAssignedUser().equals(user))
+                .collect(toList());
         // then
         assertEquals(2, tasks.size());
         assertEquals(user, tasks.get(0).getAssignedUser());
         assertEquals(user, tasks.get(1).getAssignedUser());
     }
+
+
+    @Test // search for overdue tasks
+    @DisplayName("Find all outdated tasks")
+    void testAddTaskListFindOutdatedTasks(){
+        // given
+        Board project = prepareTestData();
+        // when
+        List<TaskList> undoneTasks = new ArrayList<>();
+        undoneTasks.add(new TaskList("To do"));
+        undoneTasks.add(new TaskList("In progress"));
+        List<Task> tasks = project.getTaskLists().stream()
+                .filter(undoneTasks::contains)
+                .flatMap( taskList -> taskList.getTasks().stream())
+                .filter( task -> task.getDeadline().isBefore(LocalDate.now()))
+                .collect(toList());
+        // then
+        assertEquals(1, tasks.size());
+        assertEquals("HQLs for analysis", tasks.get(0).getTitle());
+    }
+
+
+    @Test // ilość zadań wykonywanych od conajmniej 10 dni
+    @DisplayName("Number of tasks realised fo at least last 10 day")
+    void testAddTaskListFindLongTasks() {
+        // given
+        Board project = prepareTestData();
+        // when
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        long longTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap( taskList -> taskList.getTasks().stream())
+                .map(Task::getCreated)
+                .filter( date -> date.compareTo(LocalDate.now().minusDays(10)) <= 0)
+                .count();
+    }
 }
+
+
+
+
+
+
