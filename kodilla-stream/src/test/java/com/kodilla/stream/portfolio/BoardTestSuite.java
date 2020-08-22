@@ -1,13 +1,20 @@
 package com.kodilla.stream.portfolio;
 
+import com.kodilla.stream.sand.SandStorage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -146,6 +153,32 @@ class BoardTestSuite {
                 .map(Task::getCreated)
                 .filter( date -> date.compareTo(LocalDate.now().minusDays(10)) <= 0)
                 .count();
+    }
+
+
+    /*
+            Do mentora: nie wiem czy dobrze myślę i czy stream jest prawidłowy.
+            Podaje dobry (chyba) wynik : 10
+     */
+    @DisplayName("HOMEWORK - find average time of task completion from 'In Progress' list")
+    void testAddTaskListAverageWorkingOnTask(){
+        // given
+        Board project = prepareTestData();
+        // when
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        double avg = IntStream.of(project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap( taskList -> taskList.getTasks().stream())
+                .map(Task::getCreated)
+                .map(dateCreated ->  LocalDate.now().compareTo(dateCreated))
+                .mapToInt(numDays -> numDays)
+                .toArray())
+                .average()
+                .orElse(0);
+
+        // then
+        assertEquals(10, avg, 0.001);
     }
 }
 
