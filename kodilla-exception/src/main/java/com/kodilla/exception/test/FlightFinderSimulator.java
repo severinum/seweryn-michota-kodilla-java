@@ -8,7 +8,6 @@ import java.util.Map;
 public class FlightFinderSimulator {
 
     private final Map<String, Boolean> availableAirports = new HashMap<>();
-    private final List<Flight> flights = new ArrayList<>();
 
     public static void main(String[] args) {
         FlightFinderSimulator simulator = new FlightFinderSimulator();
@@ -26,7 +25,6 @@ public class FlightFinderSimulator {
     }
 
     private void addFlight(Flight flight) {
-        flights.add(flight);
         availableAirports.put(flight.getArrivalAirport(), true);
     }
 
