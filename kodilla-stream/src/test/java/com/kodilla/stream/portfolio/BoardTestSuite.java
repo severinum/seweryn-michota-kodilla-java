@@ -1,17 +1,30 @@
 package com.kodilla.stream.portfolio;
 
+import com.kodilla.stream.sand.SandStorage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.Arrays;
+>>>>>>> origin/macbook
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTestSuite {
 
     @Test
+    @DisplayName("Add tasks lists to the project")
     void testAddTaskList() {
         //Given
         Board project = prepareTestData();
@@ -91,23 +104,30 @@ class BoardTestSuite {
     }
 
 
-    @Test
+    @Test // wyszukanie zadan uzytkownika
+    @DisplayName("Get users tasks")
     void testAddTaskListFindUsersTasks(){
         // given
-        Board project = prepareTestData();
+        Board project  = prepareTestData();
         // when
         User user = new User("developer1", "John Smith");
         List<Task> tasks = project.getTaskLists().stream()
-                .flatMap( l -> l.getTasks().stream())
-                .filter( t -> t.getAssignedUser().equals(user))
-                .collect(Collectors.toList());
+                .flatMap( list -> list.getTasks().stream())
+                .filter( task -> task.getAssignedUser().equals(user))
+                .collect(toList());
         // then
         assertEquals(2, tasks.size());
         assertEquals(user, tasks.get(0).getAssignedUser());
         assertEquals(user, tasks.get(1).getAssignedUser());
     }
 
+<<<<<<< HEAD
     @Test
+=======
+
+    @Test // search for overdue tasks
+    @DisplayName("Find all outdated tasks")
+>>>>>>> origin/macbook
     void testAddTaskListFindOutdatedTasks(){
         // given
         Board project = prepareTestData();
@@ -117,23 +137,38 @@ class BoardTestSuite {
         undoneTasks.add(new TaskList("In progress"));
         List<Task> tasks = project.getTaskLists().stream()
                 .filter(undoneTasks::contains)
+<<<<<<< HEAD
                 .flatMap( tl -> tl.getTasks().stream() )
                 .filter( t -> t.getDeadline().isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
+=======
+                .flatMap( taskList -> taskList.getTasks().stream())
+                .filter( task -> task.getDeadline().isBefore(LocalDate.now()))
+                .collect(toList());
+>>>>>>> origin/macbook
         // then
         assertEquals(1, tasks.size());
         assertEquals("HQLs for analysis", tasks.get(0).getTitle());
     }
 
+<<<<<<< HEAD
     @Test // zadania wykonywane od min 10 dni
     void testAddTaskListFindLongTasks() {
-        //Given
+gio        //Given
+=======
+
+    @Test // ilość zadań wykonywanych od conajmniej 10 dni
+    @DisplayName("Number of tasks realised fo at least last 10 day")
+    void testAddTaskListFindLongTasks() {
+        // given
+>>>>>>> origin/macbook
         Board project = prepareTestData();
         // when
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
+<<<<<<< HEAD
                 .flatMap( tl -> tl.getTasks().stream())
                 .map(Task::getCreated)
                 .filter( d -> d.compareTo(LocalDate.now().minusDays(1)) <= 0)
@@ -156,6 +191,38 @@ class BoardTestSuite {
                 .sum
 
          */
+=======
+                .flatMap( taskList -> taskList.getTasks().stream())
+                .map(Task::getCreated)
+                .filter( date -> date.compareTo(LocalDate.now().minusDays(10)) <= 0)
+                .count();
+    }
+
+
+    /*
+            Do mentora: nie wiem czy dobrze myślę i czy stream jest prawidłowy.
+            Podaje dobry (chyba) wynik : 10
+     */
+    @DisplayName("HOMEWORK - find average time of task completion from 'In Progress' list")
+    void testAddTaskListAverageWorkingOnTask(){
+        // given
+        Board project = prepareTestData();
+        // when
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        double avg = IntStream.of(project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap( taskList -> taskList.getTasks().stream())
+                .map(Task::getCreated)
+                .map(dateCreated ->  LocalDate.now().compareTo(dateCreated))
+                .mapToInt(numDays -> numDays)
+                .toArray())
+                .average()
+                .orElse(0);
+
+        // then
+        assertEquals(10, avg, 0.001);
+>>>>>>> origin/macbook
     }
 }
 
@@ -164,6 +231,7 @@ class BoardTestSuite {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -198,3 +266,5 @@ class BoardTestSuite {
 
 
 
+=======
+>>>>>>> origin/macbook

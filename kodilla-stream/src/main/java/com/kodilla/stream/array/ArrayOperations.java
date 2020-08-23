@@ -8,7 +8,8 @@ import java.util.OptionalDouble;
 import java.util.stream.IntStream;
 
 public interface ArrayOperations {
-     static double getAverage(int[] numbers){
+
+    static double getAverage(int[] numbers){
          if (numbers.length == 0)
              return 0;
          IntStream.range(0, numbers.length)
@@ -18,8 +19,6 @@ public interface ArrayOperations {
                 .map( n -> numbers[n])
                 .average()
                  .orElse(0.0);
-
-
-            return avg;
+         return avg;
     }
 }
