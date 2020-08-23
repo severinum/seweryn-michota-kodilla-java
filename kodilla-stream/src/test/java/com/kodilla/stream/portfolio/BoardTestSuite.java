@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.Arrays;
->>>>>>> origin/macbook
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -121,13 +118,9 @@ class BoardTestSuite {
         assertEquals(user, tasks.get(1).getAssignedUser());
     }
 
-<<<<<<< HEAD
-    @Test
-=======
 
     @Test // search for overdue tasks
     @DisplayName("Find all outdated tasks")
->>>>>>> origin/macbook
     void testAddTaskListFindOutdatedTasks(){
         // given
         Board project = prepareTestData();
@@ -137,61 +130,25 @@ class BoardTestSuite {
         undoneTasks.add(new TaskList("In progress"));
         List<Task> tasks = project.getTaskLists().stream()
                 .filter(undoneTasks::contains)
-<<<<<<< HEAD
-                .flatMap( tl -> tl.getTasks().stream() )
-                .filter( t -> t.getDeadline().isBefore(LocalDate.now()))
-                .collect(Collectors.toList());
-=======
                 .flatMap( taskList -> taskList.getTasks().stream())
                 .filter( task -> task.getDeadline().isBefore(LocalDate.now()))
                 .collect(toList());
->>>>>>> origin/macbook
         // then
         assertEquals(1, tasks.size());
         assertEquals("HQLs for analysis", tasks.get(0).getTitle());
     }
 
-<<<<<<< HEAD
-    @Test // zadania wykonywane od min 10 dni
-    void testAddTaskListFindLongTasks() {
-gio        //Given
-=======
 
     @Test // ilość zadań wykonywanych od conajmniej 10 dni
     @DisplayName("Number of tasks realised fo at least last 10 day")
     void testAddTaskListFindLongTasks() {
         // given
->>>>>>> origin/macbook
         Board project = prepareTestData();
         // when
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
-<<<<<<< HEAD
-                .flatMap( tl -> tl.getTasks().stream())
-                .map(Task::getCreated)
-                .filter( d -> d.compareTo(LocalDate.now().minusDays(1)) <= 0)
-                .count();
-
-        // then
-        assertEquals(2, longTasks);
-    }
-
-    @Test
-    void testAddTaskListAverageWorkingOnTask(){
-        //Given
-        Board project = prepareTestData();
-        List<TaskList> inProgressTasks = new ArrayList<>();
-        inProgressTasks.add(new TaskList("In progress"));
-
-        /*double avg = project.getTaskLists().stream()
-                .filter(inProgressTasks::contains)
-                .flatMap( tl -> tl.getTasks().stream())
-                .sum
-
-         */
-=======
                 .flatMap( taskList -> taskList.getTasks().stream())
                 .map(Task::getCreated)
                 .filter( date -> date.compareTo(LocalDate.now().minusDays(10)) <= 0)
@@ -222,49 +179,5 @@ gio        //Given
 
         // then
         assertEquals(10, avg, 0.001);
->>>>>>> origin/macbook
     }
 }
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> origin/macbook
