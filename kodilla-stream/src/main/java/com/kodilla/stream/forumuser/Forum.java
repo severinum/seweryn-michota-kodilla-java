@@ -3,6 +3,7 @@ package com.kodilla.stream.forumuser;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.kodilla.stream.forumuser.ForumUser;
 
 public final class Forum {
 
@@ -17,6 +18,7 @@ public final class Forum {
         usersList.add(new ForumUser(6,"Brandon", 'M', LocalDate.of(1999, 11, 10), 23));
         usersList.add(new ForumUser(7,"Anna", 'F', LocalDate.of(1980, 02, 19), 523));
         usersList.add(new ForumUser(8,"Martha", 'F', LocalDate.of(1998, 12, 20), 8));
+
     }
 
     public List<ForumUser> getUserList(){

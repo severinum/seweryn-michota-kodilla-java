@@ -150,10 +150,12 @@ class BoardTestSuite {
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
 
-        In Int = project.getTaskLists().stream()
+        /*double avg = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap( tl -> tl.getTasks().stream())
-                .
+                .sum
+
+         */
     }
 }
 
