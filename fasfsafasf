@@ -1,0 +1,128 @@
+[1mdiff --git a/kodilla-stream/src/main/java/com/kodilla/stream/StreamMain.java b/kodilla-stream/src/main/java/com/kodilla/stream/StreamMain.java[m
+[1mindex cac9068..d0f99bb 100644[m
+[1m--- a/kodilla-stream/src/main/java/com/kodilla/stream/StreamMain.java[m
+[1m+++ b/kodilla-stream/src/main/java/com/kodilla/stream/StreamMain.java[m
+[36m@@ -1,5 +1,16 @@[m
+ package com.kodilla.stream;[m
+ [m
+[32m+[m[32mimport com.kodilla.stream.beautifier.PoemBeautifier;[m
+[32m+[m[32mimport com.kodilla.stream.book.Book;[m
+[32m+[m[32mimport com.kodilla.stream.book.BookDirectory;[m
+[32m+[m[32mimport com.kodilla.stream.forumuser.Forum;[m
+[32m+[m[32mimport com.kodilla.stream.forumuser.ForumUser;[m
+[32m+[m[32mimport com.kodilla.stream.iterate.NumbersGenerator;[m
+[32m+[m[32mimport com.kodilla.stream.lambda.ExpressionExecutor;[m
+[32m+[m[32mimport com.kodilla.stream.lambda.Processor;[m
+[32m+[m[32mimport com.kodilla.stream.person.People;[m
+[32m+[m[32mimport com.kodilla.stream.reference.FunctionalCalculator;[m
+[32m+[m
+ import java.time.LocalDate;[m
+ import java.time.Period;[m
+ import java.util.List;[m
+[36m@@ -67,7 +78,7 @@[m [mpublic class StreamMain {[m
+ [m
+          */[m
+ [m
+[31m-        /* BOOK - streams[m
+[32m+[m[32m        /* BOOK - streams */[m
+         BookDirectory theBookDirectory = new BookDirectory();[m
+         List<Book> theResultListOfBooks = theBookDirectory.getList().stream()[m
+                 .filter(book -> book.getYearOfPublication() > 2005)[m
+[36m@@ -95,7 +106,7 @@[m [mpublic class StreamMain {[m
+         System.out.println(theResultString);[m
+ [m
+ [m
+[31m-        /* FORUM USER HOMEWORK[m
+[32m+[m[32m        /* FORUM USER HOMEWORK */[m
+         System.out.println("\nForum Users Filtering\n");[m
+         Forum forum = new Forum();[m
+         Map<Integer, ForumUser> filteredForumUsers = forum.getUserList().stream()[m
+[36m@@ -110,10 +121,5 @@[m [mpublic class StreamMain {[m
+         filteredForumUsers.entrySet().stream()[m
+                 .map(entry -> entry.getKey() + " : " + entry.getValue())[m
+                 .forEach(System.out::println);[m
+[31m-[m
+[31m-         */[m
+[31m-[m
+[31m-[m
+[31m-[m
+     }[m
+ }[m
+[1mdiff --git a/kodilla-stream/src/main/java/com/kodilla/stream/book/BookDirectory.java b/kodilla-stream/src/main/java/com/kodilla/stream/book/BookDirectory.java[m
+[1mindex b913344..2311502 100644[m
+[1m--- a/kodilla-stream/src/main/java/com/kodilla/stream/book/BookDirectory.java[m
+[1m+++ b/kodilla-stream/src/main/java/com/kodilla/stream/book/BookDirectory.java[m
+[36m@@ -21,7 +21,6 @@[m [mpublic class BookDirectory {[m
+                 2007, "0006"));[m
+         theBookList.add(new Book("Giancarlo Guerrero", "Enemies of eternity",[m
+                 2009, "0007"));[m
+[31m-[m
+     }[m
+ [m
+     public List<Book> getList(){[m
+[1mdiff --git a/kodilla-stream/src/main/java/com/kodilla/stream/forumuser/Forum.java b/kodilla-stream/src/main/java/com/kodilla/stream/forumuser/Forum.java[m
+[1mindex d7ba7de..b3f92d8 100644[m
+[1m--- a/kodilla-stream/src/main/java/com/kodilla/stream/forumuser/Forum.java[m
+[1m+++ b/kodilla-stream/src/main/java/com/kodilla/stream/forumuser/Forum.java[m
+[36m@@ -3,9 +3,8 @@[m [mpackage com.kodilla.stream.forumuser;[m
+ import java.time.LocalDate;[m
+ import java.util.ArrayList;[m
+ import java.util.List;[m
+[31m-import com.kodilla.stream.forumuser.ForumUser;[m
+ [m
+[31m-public final class Forum {[m
+[32m+[m[32mpublic class Forum {[m
+ [m
+     private final List<ForumUser> usersList = new ArrayList<>();[m
+ [m
+[36m@@ -18,7 +17,6 @@[m [mpublic final class Forum {[m
+         usersList.add(new ForumUser(6,"Brandon", 'M', LocalDate.of(1999, 11, 10), 23));[m
+         usersList.add(new ForumUser(7,"Anna", 'F', LocalDate.of(1980, 02, 19), 523));[m
+         usersList.add(new ForumUser(8,"Martha", 'F', LocalDate.of(1998, 12, 20), 8));[m
+[31m-[m
+     }[m
+ [m
+     public List<ForumUser> getUserList(){[m
+[1mdiff --git a/kodilla-stream/src/main/java/com/kodilla/stream/lambda/ExecuteSaySomething.java b/kodilla-stream/src/main/java/com/kodilla/stream/lambda/ExecuteSaySomething.java[m
+[1mindex 5552752..52d6d7e 100644[m
+[1m--- a/kodilla-stream/src/main/java/com/kodilla/stream/lambda/ExecuteSaySomething.java[m
+[1m+++ b/kodilla-stream/src/main/java/com/kodilla/stream/lambda/ExecuteSaySomething.java[m
+[36m@@ -1,9 +1,8 @@[m
+ package com.kodilla.stream.lambda;[m
+ [m
+ public class ExecuteSaySomething implements Executor {[m
+[31m-[m
+     @Override[m
+     public void process() {[m
+[31m-[m
+[32m+[m[32m        System.out.println("This is an example text.");[m
+     }[m
+ }[m
+[1mdiff --git a/kodilla-stream/src/main/java/com/kodilla/stream/portfolio/TaskList.java b/kodilla-stream/src/main/java/com/kodilla/stream/portfolio/TaskList.java[m
+[1mindex 4652b7b..7b4664d 100644[m
+[1m--- a/kodilla-stream/src/main/java/com/kodilla/stream/portfolio/TaskList.java[m
+[1m+++ b/kodilla-stream/src/main/java/com/kodilla/stream/portfolio/TaskList.java[m
+[36m@@ -43,4 +43,4 @@[m [mpublic final class TaskList {[m
+         TaskList taskList = (TaskList) o;[m
+         return Objects.equals(name, taskList.name);[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/kodilla-stream/src/test/java/com/kodilla/stream/portfolio/BoardTestSuite.java b/kodilla-stream/src/test/java/com/kodilla/stream/portfolio/BoardTestSuite.java[m
+[1mindex 3bb65a3..2fa68bf 100644[m
+[1m--- a/kodilla-stream/src/test/java/com/kodilla/stream/portfolio/BoardTestSuite.java[m
+[1m+++ b/kodilla-stream/src/test/java/com/kodilla/stream/portfolio/BoardTestSuite.java[m
+[36m@@ -180,4 +180,10 @@[m [mclass BoardTestSuite {[m
+         // then[m
+         assertEquals(10, avg, 0.001);[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+[m
