@@ -5,15 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class MovieStore {
 
     public static void main(String[] args) {
         MovieStore movieStore = new MovieStore();
-        movieStore.getMovies().entrySet().stream()
+        System.out.println(movieStore.getMovies().entrySet().stream()
                 .map(Map.Entry::getValue)
-                .flatMap( lista -> lista.stream())
-                .forEach( title -> System.out.print(title + "!"));
+                .flatMap(lista -> lista.stream())
+                .collect(Collectors.joining("!")));
     }
 
     public Map<String, List<String>> getMovies() {
