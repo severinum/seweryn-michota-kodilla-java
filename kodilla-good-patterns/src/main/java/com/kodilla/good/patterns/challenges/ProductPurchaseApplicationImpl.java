@@ -1,7 +1,5 @@
 package com.kodilla.good.patterns.challenges;
 
-import com.kodilla.good.patterns.challenges.domain.Customer;
-import com.kodilla.good.patterns.challenges.domain.Product;
 import com.kodilla.good.patterns.challenges.dto.PurchaseDto;
 import com.kodilla.good.patterns.challenges.processors.PurchaseProcessor;
 import com.kodilla.good.patterns.challenges.repository.TangibleProductPurchaseRepository;
