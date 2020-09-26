@@ -45,6 +45,8 @@ public class AirportResource {
         addFlight(new Flight(wro, lcj));
         addFlight(new Flight(gdn, bzg));
         addFlight(new Flight(bzg, gdn));
+        addFlight(new Flight(waw, lcj));
+        addFlight(new Flight(lcj, wro));
 
         displayAllAirportsData();
 

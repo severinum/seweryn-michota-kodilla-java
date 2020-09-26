@@ -31,8 +31,8 @@ public class Flight {
     @Override
     public String toString() {
         return "Flight{" +
-                "from=" + from +
-                ", to=" + to +
+                "from = " + from +
+                ", to = " + to +
                 '}';
     }
 
