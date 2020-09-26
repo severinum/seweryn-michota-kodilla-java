@@ -33,15 +33,17 @@ public class FlightSearchService {
 
         List<Flight> jointFlights = new ArrayList<>();
         Flight directFlight = null;
+
         if(airportFrom.getOutgoingFlightsLocations().contains(airportTo)){
             directFlight = new Flight(airportFrom, airportTo);
         }
-        for(Airport airport : airportFrom.getOutgoingFlightsLocations()){
-            if(airport.getOutgoingFlightsLocations().contains(airportTo)){
-                jointFlights.add(new Flight(airportFrom, airport));
-                jointFlights.add(new Flight(airport, airportTo));
-            }
-        }
+
+        airportFrom.getOutgoingFlightsLocations().stream()
+                .filter(airport -> airport.getOutgoingFlightsLocations().contains(airportTo))
+                .forEach(airport -> {
+                    jointFlights.add(new Flight(airportFrom, airport));
+                    jointFlights.add(new Flight(airport, airportTo));
+                });
 
         return new FlightSearchDto(directFlight, jointFlights);
     }
