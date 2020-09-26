@@ -1,18 +1,18 @@
 package com.kodilla.good.patterns.flights;
 
 import com.kodilla.good.patterns.flights.domain.Flight;
-import com.kodilla.good.patterns.flights.repository.FlightsRepository;
+import com.kodilla.good.patterns.flights.resources.AirportResource;
+import com.kodilla.good.patterns.flights.services.AirportService;
+import com.kodilla.good.patterns.flights.services.FlightSearchService;
 
-import java.util.Set;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        FlightsRepository flightsRepository = new FlightsRepository();
-
-        Set<Flight> allFlights = flightsRepository.getAllFlights();
-        allFlights.stream().forEach(System.out::println);
+        AirportService airportService = new AirportService(new AirportResource());
+        FlightSearchService flightSearchService = new FlightSearchService(airportService);
+        List<Flight> foundFlights = flightSearchService.findFlight("bzg", "waw");
 
     }
 }

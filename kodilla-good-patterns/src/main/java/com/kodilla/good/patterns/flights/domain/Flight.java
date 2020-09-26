@@ -4,35 +4,35 @@ import java.util.Objects;
 
 public class Flight {
 
-    private String from;
-    private String to;
+    private Airport from;
+    private Airport to;
 
-    public Flight(String from, String to) {
+    public Flight(Airport from, Airport to) {
         this.from = from;
         this.to = to;
     }
 
-    public String getFrom() {
+    public Airport getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public void setFrom(Airport from) {
         this.from = from;
     }
 
-    public String getTo() {
+    public Airport getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public void setTo(Airport to) {
         this.to = to;
     }
 
     @Override
     public String toString() {
         return "Flight{" +
-                "from='" + from + '\'' +
-                ", to='" + to + '\'' +
+                "from=" + from +
+                ", to=" + to +
                 '}';
     }
 
