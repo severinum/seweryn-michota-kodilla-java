@@ -25,6 +25,15 @@ public class AirportResource {
         Airport szz = new Airport("SZZ", "Szczecin");
         Airport ieg = new Airport("IEG","Zielona Góra");
 
+
+        Airport heat = new Airport("LHR", "Heathrow Airport");
+        Airport norw = new Airport("NWI", "Norwich International Airport");
+        Airport man = new Airport("MAN", "Manchester Airport");
+        Airport card = new Airport("CWL", "Cardiff Airport");
+        Airport belf = new Airport("BFS", "Belfast International Airport");
+        Airport edin = new Airport("EDI", "Edinburgh Airport");
+
+
         airports.put("WAW", waw);
         airports.put("WMI", wmi);
         airports.put("WRO", wro);
