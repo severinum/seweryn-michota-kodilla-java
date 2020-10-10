@@ -10,7 +10,7 @@ class LoggerTestSuite {
 
     @BeforeAll
     public static void setUpLogger(){
-        logger =Logger.INSTANCE;
+        logger = Logger.INSTANCE;
     }
 
     @Test
@@ -29,7 +29,7 @@ class LoggerTestSuite {
         logger.log("Test log");
         logger.log("New log");
         // then
-        assertTrue(logger.getLastLog().equals("New log"));
+        assertEquals("New log", logger.getLastLog());
     }
 
 }
