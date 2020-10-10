@@ -39,6 +39,10 @@ class LibraryTestSuite {
         // add new book to deep copy of the library object
         townHallLibrary.getBooks().add(new Book("Clean Code","Robert Cecil Martin", LocalDate.of(2008, 07, 01)));
 
+        System.out.println(library);
+        System.out.println(townHallLibrary);
+        System.out.println(councilLibrary);
+
         // when
         // then
         assertEquals(4, library.getBooks().size());
