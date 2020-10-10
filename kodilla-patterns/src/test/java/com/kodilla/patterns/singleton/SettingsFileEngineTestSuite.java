@@ -12,7 +12,7 @@ class SettingsFileEngineTestSuite {
 
     @BeforeAll
     public static void openSettingsFile(){
-        settingsFileEngine = new SettingsFileEngine();
+        settingsFileEngine = SettingsFileEngine.INSTANCE;
         settingsFileEngine.open("myapp.settings");
     }
 
@@ -37,6 +37,15 @@ class SettingsFileEngineTestSuite {
         // when
         boolean result = settingsFileEngine.loadSettings();
         // then
+        assertTrue(result);
+    }
+
+    @Test
+    void testSaveSettings() {
+        //Given
+        //When
+        boolean result = settingsFileEngine.saveSettings();
+        //Then
         assertTrue(result);
     }
 
