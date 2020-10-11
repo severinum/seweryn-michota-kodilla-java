@@ -13,7 +13,6 @@ public class DrivingTask implements Task {
         isExecuted = false;
     }
 
-
     @Override
     public void executeTask() {
         isExecuted = true;
