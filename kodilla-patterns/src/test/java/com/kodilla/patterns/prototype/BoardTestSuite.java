@@ -35,7 +35,7 @@ class BoardTestSuite {
         board.getLists().add(listInProgress);
         board.getLists().add(listDone);
 
-        board.setTestText("ALa ma kota");
+
 
         // making a shallow clone of object board
         Board clonedBoard = null;

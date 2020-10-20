@@ -8,16 +8,6 @@ public class Board extends Prototype<Board> {
     private  String name;
     private  Set<TasksList> lists = new HashSet<>();
 
-    private String testText;
-
-    public String getTestText() {
-        return testText;
-    }
-
-    public void setTestText(String testText) {
-        this.testText = testText;
-    }
-
     public Board(String name) {
         this.name = name;
     }
