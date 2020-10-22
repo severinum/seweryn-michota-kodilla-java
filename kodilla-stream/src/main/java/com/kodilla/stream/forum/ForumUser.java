@@ -11,6 +11,12 @@ public class ForumUser {
     private final String location;
     private final Set<ForumUser> friends = new HashSet<>();
 
+    /**
+     * Just to test javadoc comments
+     * @param username username
+     * @param realName real user name
+     * @param location user loacation
+     */
     public ForumUser(String username, String realName, String location) {
         this.username = username;
         this.realName = realName;
