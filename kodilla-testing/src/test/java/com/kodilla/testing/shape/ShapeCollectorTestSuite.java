@@ -4,6 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Shape Collector Test Suite")
@@ -176,7 +179,8 @@ public class ShapeCollectorTestSuite {
             String expected = null;
             // then
             assertEquals(expected, actual);
-
         }
     }
+    
+
 }
