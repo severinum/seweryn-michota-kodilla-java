@@ -5,6 +5,14 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.findCompanyNamesByPrefix",
+                query = "SELECT * FROM COMPANIES WHERE SUBSTRING(company_name ,1,3) = :COMPANYPREFIX ",
+                resultClass = Company.class
+        )
+})
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
